@@ -1,0 +1,56 @@
+<div>
+
+<div>
+    <form action="">
+        <div>
+        <label for="nombre"></label>
+        <input type="text" name="nombre" id="nombre" placeholder="nombre"
+        [(ngModel)]="nombreNuevo">
+    </div>
+
+    <div>
+        <label for="calidad">calidad</label>
+        <input type="text" name="calidad" id="calidad" placeholder="calidad"
+        [(ngModel)]="calidadNuevo">
+    </div>
+
+    <div>
+        <label for="precio">precio</label>
+        <input type="number" name="precio" id="precio" placeholder="precio"
+        [(ngModel)]="precioNuevo">
+    </div>
+    <button type="submit" (click)="agregarProducto()">agregar</button>
+    </form>
+</div>
+
+
+
+    <h2>Este componente es el contenedor de los productos</h2>
+    <ul>
+        <li  *ngFor="let elemento of productos">
+        <app-producto  
+            [nombreProducto]="elemento.nombre"
+            [calidadProducto]="elemento.calidad" 
+            [precioProducto]="elemento.precio"
+            >
+        </app-producto>
+    </li>        
+ </ul>
+
+ <button (click)="cambiarCalidad()">Ocultar Calidad Bajo</button>
+ <ul>
+    <ng-template  ngFor let-elemento [ngForOf]="productos">
+        <li *ngIf="verificarCalidad(elemento.calidad)" >
+            <app-producto  
+                [nombreProducto]="elemento.nombre"
+                [calidadProducto]="elemento.calidad" 
+                [precioProducto]="elemento.precio"
+                >
+            </app-producto>
+        </li>
+    </ng-template>   
+     </ul>
+</div>
+
+
+
